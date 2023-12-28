@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       {
         'type': 'Feature',
         'geometry': {
-          'type': 'Point',
+          'type': 'Polygon',
           'coordinates': [-77.032, 38.913] as [number, number],
         },
         'properties': {
@@ -39,11 +39,66 @@ export class AppComponent implements OnInit, AfterViewInit {
           'title': 'Mapbox',
           'description': 'San Francisco, California'
         }
+      },
+      {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-122.414, 87.776] as [number, number],
+        },
+        'properties': {
+          'title': 'Mapbox',
+          'description': 'San Francisco, California'
+        }
+      },
+      {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [-122.414, -37.776] as [number, number],
+        },
+        'properties': {
+          'title': 'Mapbox',
+          'description': 'San Francisco, California'
+        }
+      },
+      {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [76.962842, 11.001812] as [number, number],
+        },
+        'properties': {
+          'title': 'Mapbox',
+          'description': 'San Francisco, California'
+        }
+      },
+      {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [78.962842, 12.001812] as [number, number],
+        },
+        'properties': {
+          'title': 'Mapbox',
+          'description': 'San Francisco, California'
+        }
+      },
+      {
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [78.1, 12.001812] as [number, number],
+        },
+        'properties': {
+          'title': 'Mapbox',
+          'description': 'San Francisco, California'
+        }
       }
     ]
   };
   ngOnInit(): void {
-    this.changeStyle(this.layerId)
+    // this.changeStyle(this.layerId)
     //     * `mapbox://styles/mapbox/standard`
     // * `mapbox://styles/mapbox/streets-v12`
     // * `mapbox://styles/mapbox/outdoors-v12`
@@ -54,32 +109,45 @@ export class AppComponent implements OnInit, AfterViewInit {
     // * `mapbox://styles/mapbox/navigation-day-v1`
     // * `mapbox://styles/mapbox/navigation-night-v1`.
 
-    // this.map = new mapboxgl.Map({
-    //   container: 'map', // container ID
-    //   // center: [76.962842, 11.001812], // starting position [lng, lat]
-    //   center: [-96, 37.8],
-    //   zoom: 3, // starting zoom,
-    //   style: 'mapbox://styles/mapbox/satellite-streets-v12',
-    //   // hash: true,
-    //   accessToken: 'pk.eyJ1Ijoia2VzYXYtc3BhcmtvdXQiLCJhIjoiY2xxYnhrbmVsMDVkODJrbzcyYmk1b2ZrOSJ9.eqRN_iBeEDzyWtx3r79bwQ',
-    //   // projection: { name: 'globe' },
-    // })
-    // for (const feature of this.geojson.features) {
-    //   // create a HTML element for each feature
-    //   const el = document.createElement('div');
-    //   el.className = 'marker';
+    this.map = new mapboxgl.Map({
+      container: 'map', // container ID
+      center: [76.962842, 11.001812], // starting position [lng, lat]
+      // center: [-96, 37.8],
+      zoom: 3, // starting zoom,
+      style: 'mapbox://styles/mapbox/satellite-streets-v12',
+      // hash: true,
+      accessToken: 'pk.eyJ1Ijoia2VzYXYtc3BhcmtvdXQiLCJhIjoiY2xxYnhrbmVsMDVkODJrbzcyYmk1b2ZrOSJ9.eqRN_iBeEDzyWtx3r79bwQ',
+      projection: { name: 'globe' },
 
-    //   // make a marker for each feature and add it to the map
-    //   new mapboxgl.Marker(el)
-    //     .setLngLat(feature.geometry.coordinates)
-    //     .setPopup(
-    //       new mapboxgl.Popup({ offset: 25 }) // add popups
-    //         .setHTML(
-    //           `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
-    //         )
-    //     )
-    //     .addTo(this.map);
-    // }
+    })
+    // new mapboxgl.NavigationControl({
+    //   showCompass: true,
+    //   showZoom: true
+    // })
+    // new mapboxgl.GeolocateControl({
+    //   showUserLocation: true,
+    //   trackUserLocation: true,
+    //   positionOptions: {
+    //     enableHighAccuracy: true
+    //   }
+    // })
+
+    for (const feature of this.geojson.features) {
+      // create a HTML element for each feature
+      const el = document.createElement('div');
+      el.className = 'marker';
+
+      // make a marker for each feature and add it to the map
+      new mapboxgl.Marker(el)
+        .setLngLat(feature.geometry.coordinates)
+        .setPopup(
+          new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+            )
+        )
+        .addTo(this.map);
+    }
 
   }
   changeStyle(layerId: Event) {

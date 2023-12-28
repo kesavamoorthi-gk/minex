@@ -1,12 +1,32 @@
+<!-- <div>
+  <input type="radio" name="basemap" value="basic" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Basic</label>
+
+  <input type="radio" name="basemap" value="streets" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Streets</label>
+
+  <input type="radio" name="basemap" value="bright" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Bright</label>
+
+  <input type="radio" name="basemap" value="light" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Light</label>
+
+  <input type="radio" name="basemap" value="dark" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Dark</label>
+
+  <input type="radio" name="basemap" value="satellite" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
+  <label>Satellite</label>
+</div>
+
 <mgl-map [style]="style" [projection]="{name:'globe'}" [zoom]="[3]" [center]="[76.962842, 11.001812]">
   <mgl-control mglNavigation></mgl-control>
   <mgl-control mglGeolocate [positionOptions]="{
     enableHighAccuracy: true
   }" [trackUserLocation]="true"></mgl-control>
-</mgl-map>
+</mgl-map> -->
 
-<!-- <div id="map"></div>
-<div class="map-overlay top">
+<div id="map"></div>
+<!-- <div class="map-overlay top">
   <div class="map-overlay-inner">
     <fieldset class="select-fieldset">
       <label>Select light preset</label>
@@ -35,23 +55,3 @@
     </fieldset>
   </div>
 </div> -->
-
-<div>
-  <input type="radio" name="basemap" value="basic" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Basic</label>
-
-  <input type="radio" name="basemap" value="streets" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Streets</label>
-
-  <input type="radio" name="basemap" value="bright" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Bright</label>
-
-  <input type="radio" name="basemap" value="light" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Light</label>
-
-  <input type="radio" name="basemap" value="dark" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Dark</label>
-
-  <input type="radio" name="basemap" value="satellite" [(ngModel)]="layerId" (ngModelChange)="changeStyle($event)" />
-  <label>Satellite</label>
-</div>
